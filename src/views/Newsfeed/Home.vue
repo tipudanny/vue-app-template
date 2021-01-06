@@ -6,14 +6,11 @@
         <AreaOfService />
         <CalculateCharge />
     </div>
-
 </template>
 
 <script>
 import Carousel from "@/components/HomeLayout/Carousel";
 import Card from "@/components/HomeLayout/Card";
-import Jumbotron from "@/components/HomeLayout/Jumbotron";
-import MediaList from "@/components/HomeLayout/MediaList";
 import OurService from "@/components/HomeLayout/OurService";
 import AreaOfService from "@/components/HomeLayout/AreaOfService";
 import CalculateCharge from "@/components/HomeLayout/CalculateCharge";
@@ -22,8 +19,6 @@ export default {
         name: 'Home',
         Carousel: Carousel,
         Card: Card,
-        Jumbotron: Jumbotron,
-        MediaList: MediaList,
         OurService: OurService,
         AreaOfService: AreaOfService,
         CalculateCharge: CalculateCharge,
@@ -52,9 +47,4 @@ export default {
     }
 }
 </script>
-<style scoped>
-ul{
-  list-style: none;
-  padding: 0;
-}
-</style>
+<style scoped> </style>

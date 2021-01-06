@@ -1,8 +1,8 @@
 import axios from 'axios'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
-import About from "@/views/About";
+import Home from "@/views/Newsfeed/Home";
+import About from "@/views/Newsfeed/About";
 
 Vue.use(VueRouter)
 window.axios = axios
@@ -24,6 +24,9 @@ const routes = [
     },
     {
         path: '/login', name: 'Login', component: () => import('@/views/Login.vue')
+    },
+    {
+        path: '/admin/dashboard', name: 'Dashboard', component: () => import('@/views/AdminPanel/Dashboard.vue')
     },
 ]
 

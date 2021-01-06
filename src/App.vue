@@ -1,17 +1,52 @@
 <template>
-  <div id="app">
-      <Header />
-      <router-view/>
-      <Footer />
-  </div>
+    <div id="app">
+
+        <div  v-if="isDashboard != 'active' ">
+            <NewsfeddHeader @dashboard="dashboard"/>
+        </div>
+        <div  v-if="isDashboard == 'active' ">
+            <DashboardHeader @dashboard="dashboard"/>
+        </div>
+
+        <router-view></router-view>
+
+        <div  v-if="isDashboard != 'active' ">
+            <NewsfeddFooter />
+        </div>
+        <div  v-if="isDashboard == 'active' ">
+            <DashboardFooter/>
+        </div>
+
+    </div>
 </template>
 <script>
-import Header from "@/components/HomeLayout/Header";
-import Footer from "@/components/HomeLayout/Footer";
+import NewsfeddHeader from "@/components/HomeLayout/NewsfeddHeader";
+import NewsfeddFooter from "@/components/HomeLayout/NewsfeddFooter";
+import DashboardHeader from "@/components/AdminPanel/DashboardHeader";
+import DashboardFooter from "@/components/AdminPanel/DashboardFooter";
+
 export default {
     components: {
-        Header: Header,
-        Footer: Footer,
+        NewsfeddHeader: NewsfeddHeader,
+        NewsfeddFooter: NewsfeddFooter,
+        DashboardHeader: DashboardHeader,
+        DashboardFooter: DashboardFooter,
+    },
+    mounted() {
+        if (localStorage.isDashboard) {
+            this.isDashboard = localStorage.isDashboard;
+        }
+    },
+    data(){
+        return{
+            isDashboard:'',
+        }
+    },
+    methods:{
+        dashboard(e){
+            console.log(e);
+            this.isDashboard = e;
+        }
     }
 }
 </script>
