@@ -2,7 +2,6 @@ import axios from 'axios'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/views/Newsfeed/Home";
-import About from "@/views/Newsfeed/About";
 
 Vue.use(VueRouter)
 window.axios = axios
@@ -11,22 +10,28 @@ window.axios = axios
 
 const routes = [
     {
-        path: '/', name: 'Home', component: Home,
-        meta: {forVisitors: true,}
-    },
-    {
-        path: '/about', name: 'About', component: About,
-        meta: {forAuth: true},
-    },
-    {
-        path: '/post/:id', name: 'Post', component: () => import('@/views/Post.vue'),
-        meta: {forAuth: true}
-    },
-    {
         path: '/login', name: 'Login', component: () => import('@/views/Login.vue')
     },
     {
-        path: '/admin/dashboard', name: 'Dashboard', component: () => import('@/views/AdminPanel/Dashboard.vue')
+        path: '/registration', name: 'Sign Up', component: () => import('@/views/Registration')
+    },
+    {
+        path: '', component: ()=> import('@/views/Newsfeed/Newsfeed'),
+        children:
+            [
+                { path: '', name: 'Home ', component: Home, },
+                { path: '/service-area', name: 'service-area', component: () => import('@/components/HomeLayout/AreaOfService') },
+                { path: '/pricing', name: 'pricing', component: () => import('@/components/HomeLayout/CalculateCharge') },
+                { path: '/contuct-us', name: 'contuct-us', component: () => import('@/components/HomeLayout/ContactUs') },
+            ]
+    },
+    {
+        path: '/admin', name: 'Admin', component: () => import('@/views/AdminPanel/Dashboard'),
+        meta: {forAuth: true},
+        children:
+            [
+                { path: 'about', name: 'Admin About', component: () => import('@/views/AdminPanel/About') }
+            ]
     },
 ]
 

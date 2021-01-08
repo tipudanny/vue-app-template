@@ -25,8 +25,8 @@ Vue.use(BootstrapVueIcons)
 
 Vue.use(Auth);
 
-axios.defaults.headers.common = {'Authorization': `Bearer ${Vue.auth.getToken()}`};
 Vue.config.productionTip = false
+axios.defaults.headers.common = {'Authorization': `Bearer ${Vue.auth.getToken()}`};
 
 new Vue({
     router,

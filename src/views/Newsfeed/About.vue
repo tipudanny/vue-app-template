@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <h2>
+            This is Newsfedd About Page.
+        </h2>
     </div>
 </template>
 <script>
