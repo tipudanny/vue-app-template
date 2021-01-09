@@ -34,7 +34,7 @@
                                 </router-link>
                             </li>
                             <li class="nav-item" v-if="isLogin == true">
-                                <router-link class="nav-link" to="/admin">Dashboard</router-link>
+                                <a class="nav-link" href="/admin">Dashboard</a>
                             </li>
                             <li  class="nav-item" v-if="isLogin == true">
                                 <a class="nav-link" href="#" @click="logout()">Logout
@@ -180,4 +180,7 @@ export default {
     }
 }
 </script>
-<style scoped> </style>
+<style scoped>
+/*@import'~bootstrap/dist/css/bootstrap.css';*/
+@import "../../assets/css/style.css";
+</style>

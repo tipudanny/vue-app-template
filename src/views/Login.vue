@@ -123,7 +123,7 @@
                     if (data.data.access_token != ''){
                         localStorage.token = data.data.access_token;
                         localStorage.expiration = data.data.expires_in;
-                        router.push('/')
+                        window.location.href = '/admin';
                     }
                 }).catch(error => {
                     console.log("ERRRR:: ",response.errors);

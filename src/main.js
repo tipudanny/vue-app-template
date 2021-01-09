@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Auth from "../packages/auth/Auth";
+import Auth from "../packages/auth/Auth"
 
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-import 'bootstrap';
-import'bootstrap/dist/css/bootstrap.css';
 
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+require('admin-lte');
+require('bootstrap');
+import'bootstrap/dist/css/bootstrap.css'
+import 'admin-lte/plugins/fontawesome-free/css/all.min.css'
+import 'admin-lte/dist/css/adminlte.css'
 
 
 import '@fortawesome/free-brands-svg-icons'
@@ -17,16 +18,11 @@ import '@fortawesome/free-brands-svg-icons'
 import '@fortawesome/fontawesome/styles.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
-
-
-
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
-
 Vue.use(Auth);
 
+axios.defaults.headers.common = {'Authorization': 'Bearer ' + localStorage.token}
+
 Vue.config.productionTip = false
-axios.defaults.headers.common = {'Authorization': `Bearer ${Vue.auth.getToken()}`};
 
 new Vue({
     router,

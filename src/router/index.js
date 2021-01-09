@@ -30,7 +30,21 @@ const routes = [
         meta: {forAuth: true},
         children:
             [
-                { path: 'about', name: 'Admin About', component: () => import('@/views/AdminPanel/About') }
+                { path: '/', name: 'About',
+                    component: () => import('@/components/AdminPanel/Dashboard')
+                },
+
+                { path: 'active-orders', name: 'Active Orders',
+                    component: () => import('@/components/AdminPanel/ActiveOrders')
+                },
+
+                { path: 'users/managers', name: 'User - Managers',
+                    component: () => import('@/components/AdminPanel/Users')
+                },
+
+                { path: 'balance/management', name: 'Balance Management',
+                    component: () => import('@/components/AdminPanel/BalanceManagement')
+                },
             ]
     },
 ]
