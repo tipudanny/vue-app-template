@@ -31,7 +31,7 @@
                     <router-link class="nav-link" to="/login">Login
                     </router-link>
                 </li>
-                <li class="nav-item" @click="$emit('dashboard','active'),isDashboardActive()">
+                <li class="nav-item">
                     <router-link class="nav-link" to="/admin">Dashboard</router-link>
                 </li>
                 <li v-if="islogged == true " class="nav-item">

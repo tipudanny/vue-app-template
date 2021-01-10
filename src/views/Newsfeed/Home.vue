@@ -24,13 +24,15 @@ export default {
         CalculateCharge: CalculateCharge,
     },
     mounted() {
-        if (this.$route.meta.islogged == true && localStorage.token !=''){
+        if (localStorage.token !=''  && localStorage.token){
             this.isLogin = true
+            this.token = localStorage.token
         }
     },
     data(){
         return{
             isLogin:false,
+            token:'',
         }
     },
     methods:{

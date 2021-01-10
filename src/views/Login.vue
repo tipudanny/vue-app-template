@@ -104,12 +104,14 @@
     export default {
         name: "Login",
         mounted() {
-            if ( localStorage.token !=''){
+            if ( localStorage.token !=''  && localStorage.token){
                 this.isLogin = true
+                this.token = localStorage.token
             }
         },
         data(){
             return{
+                token:'',
                 isLogin:false,
                 loginInfo:{
                     email:'tipu@gmail.com',
@@ -134,5 +136,5 @@
 </script>
 
 <style scoped>
-
+    @import "../assets/css/style.css";
 </style>

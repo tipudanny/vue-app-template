@@ -10,13 +10,16 @@ window.axios = axios
 
 const routes = [
     {
-        path: '/login', name: 'Login', component: () => import('@/views/Login.vue')
+        path: '/login', name: 'Login', component: () => import('@/views/Login.vue'),
+        meta: {forVisitors: true},
     },
     {
-        path: '/registration', name: 'Sign Up', component: () => import('@/views/Registration')
+        path: '/registration', name: 'Sign Up', component: () => import('@/views/Registration'),
+        meta: {forVisitors: true},
     },
     {
         path: '', component: ()=> import('@/views/Newsfeed/Newsfeed'),
+        meta: {forVisitors: true},
         children:
             [
                 { path: '', name: 'Home ', component: Home, },
@@ -30,7 +33,10 @@ const routes = [
         meta: {forAuth: true},
         children:
             [
-                { path: '/', name: 'About',
+                { path: '/', name: 'Dashboard',
+                    component: () => import('@/components/AdminPanel/Dashboard')
+                },
+                { path: 'dashboard', name: 'Dashboard ',
                     component: () => import('@/components/AdminPanel/Dashboard')
                 },
 

@@ -157,13 +157,15 @@ export default {
         name: 'Newsfeed',
     },
     mounted() {
-        if ( localStorage.token !=''){
+        if ( localStorage.token !='' && localStorage.token){
             this.isLogin = true
+            this.token = localStorage.token
         }
     },
     data(){
         return{
             isLogin:false,
+            token:'',
         }
     },
     methods:{

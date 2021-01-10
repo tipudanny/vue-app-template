@@ -43,7 +43,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item dropdown-footer">Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item dropdown-footer">Logout</a>
+                                <a href="#" @click="logout()" class="dropdown-item dropdown-footer">Logout</a>
                             </div>
                         </li>
                         <!-- Notifications Dropdown Menu -->
@@ -90,12 +90,12 @@
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <router-link to="/admin/dashboard" class="nav-link">
                                         <i class="nav-icon fas fa-tachometer-alt"></i>
                                         <p>
                                             Dashboard
                                         </p>
-                                    </a>
+                                    </router-link>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
@@ -178,14 +178,29 @@
 export default {
     name: "Header",
     mounted() {
-
+        if ( localStorage.token !='' && localStorage.token){
+            this.isLogin = true
+            this.token = localStorage.token
+        }
     },
     data() {
         return {
+            isLogin:false,
+            token:'',
         }
     },
     methods:{
-
+        logout(){
+            axios.post('http://currier.api/api/auth/logout').then((data)=>{
+                if (data.data.code == 'logout') {
+                    localStorage.token = '';
+                    localStorage.expiration = '';
+                    this.token = '';
+                    this.isLogin = false;
+                    this.$router.push('/')
+                }
+            }).catch(error => {});
+        }
     }
 }
 </script>
