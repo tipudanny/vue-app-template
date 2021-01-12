@@ -172,6 +172,7 @@ export default {
         logout(){
             axios.post('http://currier.api/api/auth/logout').then((data)=>{
                 if (data.data.code == 'logout') {
+                    this.$toastr.s("Logout Successfully","SUCCESS::");
                     localStorage.token = '';
                     localStorage.expiration = '';
                     this.token = '';

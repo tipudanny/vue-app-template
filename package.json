@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "admin-lte": "^3.1.0-rc",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
@@ -15,8 +16,10 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "save": "^2.4.0",
+    "toastr": "^2.1.4",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-toastr": "^2.1.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -26,6 +29,8 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

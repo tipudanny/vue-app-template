@@ -123,12 +123,14 @@
             login(){
                 axios.post('http://currier.api/api/auth/login',this.loginInfo).then((data)=>{
                     if (data.data.access_token != ''){
+                        this.$toastr.s("Login Successfully","SUCCESS::");
                         localStorage.token = data.data.access_token;
                         localStorage.expiration = data.data.expires_in;
                         window.location.href = '/admin';
                     }
                 }).catch(error => {
-                    console.log("ERRRR:: ",response.errors);
+                    this.$toastr.e("Username and Password Error !!","ERROR::");
+                    console.log(error);
                 });
             },
         }
