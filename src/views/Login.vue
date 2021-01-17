@@ -122,10 +122,10 @@
         methods:{
             login(){
                 axios.post('http://currier.api/api/auth/login',this.loginInfo).then((data)=>{
-                    if (data.data.access_token != ''){
+                    if (data.data.access_token && data.data.access_token != ''){
                         this.$toastr.s("Login Successfully","SUCCESS::");
                         localStorage.token = data.data.access_token;
-                        localStorage.expiration = data.data.expires_in;
+                        localStorage.expired_out = new Date().getTime()+data.data.expires_in*1000;
                         window.location.href = '/admin';
                     }
                 }).catch(error => {

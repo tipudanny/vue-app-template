@@ -19,7 +19,8 @@
     "toastr": "^2.1.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vue-toastr": "^2.1.2"
+    "vue-toastr": "^2.1.2",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",

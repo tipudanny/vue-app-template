@@ -40,14 +40,29 @@ const routes = [
                     component: () => import('@/components/AdminPanel/Dashboard')
                 },
 
+                //Orders Management
                 { path: 'active-orders', name: 'Active Orders',
-                    component: () => import('@/components/AdminPanel/ActiveOrders')
+                    component: () => import('@/components/AdminPanel/Orders/ActiveOrders')
+                },
+                { path: 'pending-orders', name: 'Pending Orders',
+                    component: () => import('@/components/AdminPanel/Orders/PendingOrders')
+                },
+                { path: 'cancel-orders', name: 'Cancel Orders',
+                    component: () => import('@/components/AdminPanel/Orders/CancelOrders')
                 },
 
-                { path: 'users/managers', name: 'User - Managers',
-                    component: () => import('@/components/AdminPanel/Users')
+                //Users Management
+                { path: 'user/managers', name: 'User - Managers',
+                    component: () => import('@/components/AdminPanel/Users/Managers')
+                },
+                { path: 'user/riders', name: 'User - Riders',
+                    component: () => import('@/components/AdminPanel/Users/Riders')
+                },
+                { path: 'user/customers', name: 'User - Customers',
+                    component: () => import('@/components/AdminPanel/Users/Users')
                 },
 
+                //Balance Management
                 { path: 'balance/management', name: 'Balance Management',
                     component: () => import('@/components/AdminPanel/BalanceManagement')
                 },
@@ -94,5 +109,11 @@ router.beforeEach((to, from, next) => {
 
 
 })
+
+Vue.prototype.$http = axios;
+const token = localStorage.getItem('token')
+if (token) {
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token
+}
 
 export default router

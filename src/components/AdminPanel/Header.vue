@@ -113,16 +113,16 @@
                                             </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">
+                                            <router-link to="/admin/pending-orders" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Pending Order</p>
-                                            </a>
+                                            </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">
+                                            <router-link to="/admin/cancel-orders" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Cancelled Order</p>
-                                            </a>
+                                                <p>Cancel Order</p>
+                                            </router-link>
                                         </li>
                                     </ul>
                                 </li>
@@ -136,26 +136,26 @@
                                     </a>
                                     <ul class="nav nav-treeview ml-2">
                                         <li class="nav-item">
-                                            <router-link to="/admin/users/managers" class="nav-link">
+                                            <router-link to="/admin/user/managers" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Managers</p>
                                             </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Riders</p>
-                                            </a>
+                                          <router-link to="/admin/user/riders" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Riders</p>
+                                          </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Customers</p>
-                                            </a>
+                                          <router-link to="/admin/user/customers" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Customers</p>
+                                          </router-link>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" v-if="role.user_info == 'super-admin'">
                                     <router-link to="/admin/balance/management" class="nav-link">
                                         <i class="fas fa-hand-holding-usd nav-icon"></i>
                                         <p>
@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import store from "@/store";
 export default {
     name: "Header",
     mounted() {
@@ -182,9 +183,11 @@ export default {
             this.isLogin = true
             this.token = localStorage.token
         }
+        this.role = store.state;
     },
     data() {
         return {
+            role: '',
             isLogin:false,
             token:'',
         }
@@ -201,7 +204,7 @@ export default {
                 }
             }).catch(error => {});
         }
-    }
+    },
 }
 </script>
 

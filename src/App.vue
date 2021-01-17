@@ -9,20 +9,13 @@ export default {
     components: {
     },
     mounted() {
-        if (localStorage.isDashboard) {
-            this.isDashboard = localStorage.isDashboard;
-        }
     },
     data(){
         return{
-            isDashboard:'',
+
         }
     },
     methods:{
-        dashboard(e){
-            console.log(e);
-            this.isDashboard = e;
-        }
     }
 }
 </script>

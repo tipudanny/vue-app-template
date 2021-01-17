@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import Auth from "../packages/auth/Auth"
 import VueToastr from "vue-toastr"
+import store from "@/store"
 
 Vue.use(VueToastr,{
     defaultTimeout: 3000,
@@ -26,11 +27,10 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Auth);
 
-axios.defaults.headers.common = {'Authorization': 'Bearer ' + localStorage.token}
-
 Vue.config.productionTip = false
 
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app')

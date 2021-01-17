@@ -4,16 +4,14 @@ export default function (Vue) {
 		// Get token
 		getToken() {
 			var token = localStorage.token
-			var expiration = localStorage.expiration
+			var expires_time = new Date().getTime()
+			var expired_out = localStorage.expired_out
 
-			var expired_in = new Date().getTime();
-			var expired_out = new Date().getTime()+expiration*1000;
-
-			if (!token || !expiration ) {
+			if (!token || !expired_out ) {
 				return null
 			}
 
-			if (expired_in > expired_out) {
+			if (expires_time > expired_out) {
 				this.destroyToken()
 				return null
 			}

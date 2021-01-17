@@ -17,6 +17,7 @@ export default {
          Footer, Header,
     },
     mounted() {
+        this.userInfo();
     },
     data(){
         return{
@@ -24,7 +25,12 @@ export default {
         }
     },
     methods:{
-
+        userInfo(){
+            axios.post('http://currier.api/api/auth/me').then((data)=>{
+                this.$store.dispatch('getUserInfo', data.data.user_type);
+                //console.log(data.data.user_type)
+            })
+        }
     }
 }
 </script>
