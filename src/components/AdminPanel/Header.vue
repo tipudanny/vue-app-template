@@ -155,7 +155,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item" v-if="role.user_info == 'super-admin'">
+                                <li class="nav-item" v-if="user_info.user_type == 'super-admin'">
                                     <router-link to="/admin/balance/management" class="nav-link">
                                         <i class="fas fa-hand-holding-usd nav-icon"></i>
                                         <p>
@@ -176,19 +176,16 @@
 
 <script>
 import store from "@/store";
+import {mapState} from "vuex";
 export default {
     name: "Header",
     mounted() {
         if ( localStorage.token !='' && localStorage.token){
-            this.isLogin = true
             this.token = localStorage.token
         }
-        this.role = store.state;
     },
     data() {
         return {
-            role: '',
-            isLogin:false,
             token:'',
         }
     },
@@ -198,13 +195,18 @@ export default {
                 if (data.data.code == 'logout') {
                     localStorage.token = '';
                     localStorage.expiration = '';
+                    localStorage.user_type = '';
                     this.token = '';
-                    this.isLogin = false;
                     this.$router.push('/')
                 }
             }).catch(error => {});
-        }
+        },
     },
+    computed: {
+        ...mapState({
+            user_info: state => state.user_info
+        })
+    }
 }
 </script>
 

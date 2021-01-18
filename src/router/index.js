@@ -2,6 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/views/Newsfeed/Home";
+import store from "@/store";
 
 Vue.use(VueRouter)
 window.axios = axios
@@ -64,7 +65,8 @@ const routes = [
 
                 //Balance Management
                 { path: 'balance/management', name: 'Balance Management',
-                    component: () => import('@/components/AdminPanel/BalanceManagement')
+                    component: () => import('@/components/AdminPanel/BalanceManagement'),
+                    meta: {forAdmin: true},
                 },
             ]
     },
@@ -93,19 +95,29 @@ router.beforeEach((to, from, next) => {
             next()
         }
     }
-    else if (to.matched.some(record => record.meta.forAuth)) {
-        if ( !Vue.auth.isAutheticated() ) {
-            to.meta.islogged = false;
+
+    else if (to.matched.some(record => record.meta.forAdmin)) {
+        if ( Vue.auth.isAutheticated() && localStorage.user_type == 'super-admin' ) {
+            next()
+        } else {
             next({
-                name: 'Login'
+                name: 'Admin'
+            })
+        }
+    }
+    if (to.matched.some(record => record.meta.forAuth)) {
+        if ( !Vue.auth.isAutheticated() && localStorage.user_type != 'super-admin' ) {
+            to.meta.forAdmin = false;
+            next({
+                name: 'Admin'
             })
         } else {
-            to.meta.islogged = true;
+            to.meta.forAdmin = false;
             next()
         }
     }
     next()
-    //console.log(to)
+    //console.log(localStorage.user_type)
 
 
 })

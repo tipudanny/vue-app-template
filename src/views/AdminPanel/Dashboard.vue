@@ -11,6 +11,7 @@
 <script>
 import Header from "@/components/AdminPanel/Header";
 import Footer from "@/components/AdminPanel/Footer";
+import {mapState} from "vuex";
 export default {
     name: 'Dashboard',
     components: {
@@ -27,11 +28,12 @@ export default {
     methods:{
         userInfo(){
             axios.post('http://currier.api/api/auth/me').then((data)=>{
-                this.$store.dispatch('getUserInfo', data.data.user_type);
-                //console.log(data.data.user_type)
+                this.$store.dispatch('getUserInfo', data.data);
+                localStorage.user_type = data.data.user_type;
+                //console.log(data.data)
             })
         }
-    }
+    },
 }
 </script>
 <style scoped>
